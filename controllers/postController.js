@@ -26,3 +26,21 @@ exports.getPostById = async (req, res) => {
         });
     }
 };
+
+exports.createPost = async (req, res) => {
+    try {
+        const {
+            title,
+            content
+        } = req.body;
+        const newPost = await Post.create({
+            title,
+            content
+        });
+        res.status(201).json(newPost);
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        });
+    }
+};
