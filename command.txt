@@ -1,0 +1,12 @@
+- Data Posts Mysql
+
+npx sequelize init --force
+
+npx sequelize-cli model:generate --name Post --attributes title:string,content:text
+
+npx sequelize-cli db:migrate
+
+npx sequelize-cli seed:generate --name demo-post
+
+npx sequelize-cli db:seed:all
+
