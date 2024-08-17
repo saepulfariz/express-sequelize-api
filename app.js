@@ -1,14 +1,10 @@
 const express = require('express');
-const postController = require('./controllers/postController');
+const postsRouter = require('./routes/posts');
 
 const app = express();
 app.use(express.json());
 
-app.get('/posts', postController.getAllPosts);
-app.get('/posts/:id', postController.getPostById);
-app.post('/posts', postController.createPost);
-app.put('/posts/:id', postController.updatePost);
-app.delete('/posts/:id', postController.deletePost);
+app.use('/posts', postsRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
