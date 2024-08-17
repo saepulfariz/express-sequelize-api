@@ -44,3 +44,26 @@ exports.createPost = async (req, res) => {
         });
     }
 };
+
+exports.updatePost = async (req, res) => {
+    try {
+        const {
+            title,
+            content
+        } = req.body;
+        const post = await Post.findByPk(req.params.id);
+        if (!post) return res.status(404).json({
+            message: 'Post not found'
+        });
+
+        post.title = title;
+        post.content = content;
+        await post.save();
+
+        res.json(post);
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        });
+    }
+};
