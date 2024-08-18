@@ -14,3 +14,6 @@ npx sequelize-cli model:generate --name User --attributes name:string,email:stri
 
 npx sequelize-cli seed:generate --name demo-user
 
+
+npm install jsonwebtoken bcryptjs
+
