@@ -12,3 +12,5 @@ npx sequelize-cli db:seed:all
 
 npx sequelize-cli model:generate --name User --attributes name:string,email:string
 
+npx sequelize-cli seed:generate --name demo-user
+
