@@ -1,10 +1,17 @@
 const {
-    Post
+    Post,
+    User
 } = require('../models');
 
 exports.getAllPosts = async (req, res) => {
     try {
-        const posts = await Post.findAll();
+        const posts = await Post.findAll({
+            include: [{
+                model: User,
+                as: 'user',
+                attributes: ['name'] // hanya mengambil field 'name' dari User
+            }]
+        });
         res.json(posts);
     } catch (error) {
         res.status(500).json({
@@ -15,7 +22,13 @@ exports.getAllPosts = async (req, res) => {
 
 exports.getPostById = async (req, res) => {
     try {
-        const post = await Post.findByPk(req.params.id);
+        const post = await Post.findByPk(req.params.id, {
+            include: [{
+                model: User,
+                as: 'user',
+                attributes: ['name'] // hanya mengambil field 'name' dari User
+            }]
+        });
         if (!post) return res.status(404).json({
             message: 'Post not found'
         });
